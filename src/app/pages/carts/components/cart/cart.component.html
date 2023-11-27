@@ -1,0 +1,96 @@
+<section class="border border-gray-400 rounded-md p-4 mt-10">
+  <header class="flex justify-between">
+    <div>
+      <h1 class="text-red-600 font-bold text-3xl">Shopping Cart</h1>
+      <p class="my-5">
+        You have
+        <label class="text-red-600">{{ cartProdects.length }}</label> item in
+        your cart
+      </p>
+    </div>
+    <p
+      class="bg-gray-100 cursor-pointer font-bold text-red-600 h-fit p-1 px-3"
+      (click)="clearData()"
+    >
+      Clear Shopping Cart
+    </p>
+  </header>
+  <table class="w-[100%] shadow-lg bg-white border-separate">
+    <tr>
+      <th class="bg-blue-100 border px-8 py-4"></th>
+      <th class="bg-blue-100 border px-8 py-4">Name</th>
+      <th class="bg-blue-100 border px-8 py-4">Prcie</th>
+      <th class="bg-blue-100 border px-8 py-4">Quentity</th>
+      <th class="bg-blue-100 border px-8 py-4">Title</th>
+      <th class="bg-blue-100 border px-8 py-4"></th>
+    </tr>
+    <tr *ngFor="let item of cartProdects; let i = index">
+      <td class="border px-8 py-4">
+        <img
+          class="w-60 h-20 rounded-lg"
+          src="{{ item.prodectId.image }}"
+          alt=""
+        />
+      </td>
+      <td class="border px-8 py-4">{{ item.prodectId.title }}</td>
+      <td class="border px-8 py-4">{{ item.prodectId.price }}</td>
+      <td class="border px-8 py-4">
+        <div class="flex">
+          <button
+            class="text-white m-1 bg-gray-950 px-3 py-1 rounded-md"
+            type="submit"
+            (click)="minsAmount(i)"
+          >
+            -
+          </button>
+          <input
+            class="bg-white border border-r-gray-300"
+            min="1"
+            (change)="changeDetect()"
+            [(ngModel)]="item.quantity"
+            type="number"
+          />
+          <button
+            class="text-white m-1 bg-gray-950 px-3 py-1 rounded-md"
+            type="submit"
+            (click)="addAmount(i)"
+          >
+            +
+          </button>
+        </div>
+      </td>
+      <td class="border px-8 py-4">
+        {{ item.quantity * item.prodectId.price | number }} .EG
+      </td>
+      <td class="border px-8 py-4">
+        <button
+          class="bg-red-500 m-4 text-white font-bold p-1 px-2 rounded-lg"
+          (click)="deleteProdect(i)"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+    <tr>
+      <th class="border px-8 py-4"></th>
+      <th class="border px-8 py-4"></th>
+      <th class="border px-8 py-4"></th>
+      <th class="border px-8 py-4"></th>
+      <th class="border w-44 py-4">Total : {{ total | number }} .EG</th>
+
+      <th class="border px-8 py-4">
+        <button
+          class="text-white m-4 font-bold bg-green-600 rounded-md h-fit p-1 px-3"
+          (click)="addCart()"
+        >
+          Order Now
+        </button>
+      </th>
+    </tr>
+  </table>
+</section>
+<footer class="p-4 rounded-md mt-4 bg-green-300" *ngIf="success">
+  <p class="text-green-800">
+    <strong>well done!</strong> Your Order is Successfull Send
+  </p>
+</footer>

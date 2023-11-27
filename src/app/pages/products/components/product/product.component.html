@@ -1,0 +1,32 @@
+<section routerLink="/details/{{ data.id }}">
+  <figure class="w-full">
+    <img class="w-fit h-72" src="{{ data.image }}" alt="" />
+  </figure>
+  <article>
+    <h1 class="bg-gray-200 px-5 py-1 h-14">{{ data.title }}</h1>
+    <p class="px-5 h-24 overflow-hidden">{{ data.description }}</p>
+  </article>
+</section>
+<section class="flex justify-between mx-3">
+  <button
+    *ngIf="!addButton"
+    (click)="addButton = true"
+    class="bg-green-800 p-2 rounded-lg text-white"
+  >
+    Add To Cart
+  </button>
+  <div class="flex gap-3" *ngIf="addButton">
+    <input
+      type="number"
+      class="outline-none w-[30%] p-2 border border-gray-300 rounded-md"
+      [(ngModel)]="amount"
+    />
+    <button
+      (click)="addProdect(); addButton = false"
+      class="bg-red-600 p-2 text-white rounded-md"
+    >
+      Add
+    </button>
+  </div>
+  <span class="bg-red-300 p-2 text-lg rounded-[50%]">{{ data.price }}.EG</span>
+</section>
