@@ -20,6 +20,14 @@
               >Carts</a
             >
           </li>
+          <li>
+            <button
+              (click)="langSwitch()"
+              class="block py-2 text-1xl cursor-pointer pl-3 pr-4 text-gray-900 rounded focus:text-blue-300"
+            >
+              {{ "lang" | translate }}
+            </button>
+          </li>
         </ul>
       </div>
     </section>
